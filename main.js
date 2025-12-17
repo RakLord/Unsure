@@ -1,12 +1,15 @@
 
 import { D } from './numbers.js'
 import { load, save } from './save.js'
-import { newPlayer } from './state.js'
+import { newPlayer, reconcilePlayer } from './state.js'
 import { tick } from './sim.js'
 import { LAYERS } from './defs.js'
 import { resolveProviderTemplate } from './ui/providers.js'
 
-let player = load() ?? newPlayer(LAYERS)
+let player = reconcilePlayer(load(), LAYERS)
+
+const layerBindings = new Map()
+const layerNavButtons = new Map()
 
 const layerBindings = new Map()
 const layerNavButtons = new Map()
@@ -96,6 +99,8 @@ function createLayerSection(layerDef) {
   const update = layer => {
     Object.entries(layer.currencies).forEach(([currency, value]) => {
       if (currencyBindings[currency]) {
+        const safeValue = value ?? D(0)
+        currencyBindings[currency].textContent = safeValue.toString()
         currencyBindings[currency].textContent = value.toString()
       }
     })
