@@ -11,6 +11,9 @@ let player = reconcilePlayer(load(), LAYERS)
 const layerBindings = new Map()
 const layerNavButtons = new Map()
 
+const layerBindings = new Map()
+const layerNavButtons = new Map()
+
 function hardReset() {
   player = newPlayer(LAYERS)
   save(player)
@@ -98,6 +101,7 @@ function createLayerSection(layerDef) {
       if (currencyBindings[currency]) {
         const safeValue = value ?? D(0)
         currencyBindings[currency].textContent = safeValue.toString()
+        currencyBindings[currency].textContent = value.toString()
       }
     })
 
