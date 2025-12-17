@@ -1,4 +1,4 @@
-import { Decimal } from 'break_infinity.js'
+import Decimal from 'break_infinity.js'
 
 // keep time as Number; keep multipliers as Number for speed
 function computeLayerMods(player, layerDef) {
