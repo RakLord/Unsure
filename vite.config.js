@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
-export default defineConfig({
-  base: 'https://RakLord.github.io/Unsure/',
-})
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/Unsure/' : '/',
+}))
